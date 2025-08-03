@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://vug7pxk62avq"]
+
+[ext_resource type="PackedScene" uid="uid://bqh54rklbbmqy" path="res://Scenes/Components/level_generator_component.tscn" id="1_dokcq"]
+[ext_resource type="Texture2D" uid="uid://bdu4dqtcfedch" path="res://Assets/HubWorldAssets/walls.png" id="2_uulcm"]
+[ext_resource type="Texture2D" uid="uid://b07inx5yy2ngh" path="res://Assets/HubWorldAssets/floor_inside.png" id="3_ejws7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k5nm3"]
+texture = ExtResource("3_ejws7")
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1orr8"]
+sources/0 = SubResource("TileSetAtlasSource_k5nm3")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5hbuj"]
+texture = ExtResource("2_uulcm")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wlc8h"]
+sources/0 = SubResource("TileSetAtlasSource_5hbuj")
+
+[node name="RandomDungeonLevelTest" type="Node2D"]
+
+[node name="env" type="Node2D" parent="."]
+
+[node name="LevelGeneratorComponent" parent="env" node_paths=PackedStringArray("floor_tile_map", "wall_tile_map") instance=ExtResource("1_dokcq")]
+floor_tile_map = NodePath("FloorTileMap")
+wall_tile_map = NodePath("WallTileMap")
+
+[node name="FloorTileMap" type="TileMapLayer" parent="env/LevelGeneratorComponent"]
+tile_set = SubResource("TileSet_1orr8")
+
+[node name="WallTileMap" type="TileMapLayer" parent="env/LevelGeneratorComponent"]
+tile_set = SubResource("TileSet_wlc8h")
