@@ -1,12 +1,14 @@
-extends Node
+extends RayCast2D
 class_name MovementComponent
 
 @export var speed = 0.25
 @export var tile_size = 16
+
 var moving = false
-var collision_dir = Vector2.ZERO
+var direction_facing = Vector2.ZERO
 
 func move(body : CharacterBody2D, input_direction : Vector2, collision_check : bool) -> void:
+	direction_facing = input_direction
 	if input_direction and collision_check and moving == false:
 		moving = true
 		var move_tween = create_tween()
