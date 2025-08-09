@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpw6he3rs0me5"]
+[gd_scene load_steps=5 format=3 uid="uid://bpw6he3rs0me5"]
 
 [ext_resource type="Script" uid="uid://bhap73edid21n" path="res://Scenes/Entities/Enemies/rat.gd" id="1_vwcx1"]
+[ext_resource type="PackedScene" uid="uid://puqmmf3mgjkx" path="res://Scenes/Components/health_component.tscn" id="2_x5cu2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p0vde"]
 size = Vector2(12, 12)
@@ -8,11 +9,16 @@ size = Vector2(12, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qaslg"]
 size = Vector2(12, 12)
 
-[node name="Rat" type="CharacterBody2D"]
+[node name="Rat" type="CharacterBody2D" node_paths=PackedStringArray("health_component") groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_vwcx1")
+health_component = NodePath("HealthComponent")
 
 [node name="placeholderSprite" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_p0vde")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qaslg")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_x5cu2")]

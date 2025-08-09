@@ -1,4 +1,4 @@
-extends RayCast2D
+extends Node2D
 class_name MovementComponent
 
 @export var speed = 0.25
@@ -7,9 +7,9 @@ class_name MovementComponent
 var moving = false
 var direction_facing = Vector2.ZERO
 
-func move(body : CharacterBody2D, input_direction : Vector2, collision_check : bool) -> void:
+func move(body : CharacterBody2D, input_direction : Vector2, collision_check : Array) -> void:
 	direction_facing = input_direction
-	if input_direction and collision_check and moving == false:
+	if input_direction and collision_check.size() == 0 and moving == false:
 		moving = true
 		var move_tween = create_tween()
 		move_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)

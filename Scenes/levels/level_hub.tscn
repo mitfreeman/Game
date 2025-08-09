@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://ba56xprxcwyug"]
+[gd_scene load_steps=15 format=4 uid="uid://ba56xprxcwyug"]
 
 [ext_resource type="Texture2D" uid="uid://bhh8kpioym432" path="res://Assets/HubWorldAssets/ground_grass.png" id="1_3v7hm"]
 [ext_resource type="Texture2D" uid="uid://dqendubrjn38l" path="res://Assets/HubWorldAssets/ground_street.png" id="1_ooaio"]
 [ext_resource type="Texture2D" uid="uid://b07inx5yy2ngh" path="res://Assets/HubWorldAssets/floor_inside.png" id="3_bfpj1"]
 [ext_resource type="Texture2D" uid="uid://bdu4dqtcfedch" path="res://Assets/HubWorldAssets/walls.png" id="4_gjady"]
 [ext_resource type="PackedScene" uid="uid://b5hwexxge13lp" path="res://Scenes/Entities/Character/character.tscn" id="5_bfpj1"]
+[ext_resource type="PackedScene" uid="uid://bpw6he3rs0me5" path="res://Scenes/Entities/Enemies/rat.tscn" id="6_gjady"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpj8y"]
 texture = ExtResource("1_ooaio")
@@ -103,5 +104,10 @@ tile_set = SubResource("TileSet_rnrih")
 
 [node name="Character" parent="." instance=ExtResource("5_bfpj1")]
 position = Vector2(265, 232)
+collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
+
+[node name="Rat" parent="." instance=ExtResource("6_gjady")]
+position = Vector2(440, 232)
+collision_layer = 3

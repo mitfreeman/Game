@@ -4,6 +4,10 @@ class_name HealthComponent
 @export var max_health : float
 @export var current_health : float
 
+func _process(delta: float) -> void:
+	if current_health <= 0:
+		handle_death()
+
 func set_current_health(expected_health : float):
 	if expected_health > max_health:
 		current_health = max_health
@@ -15,3 +19,6 @@ func take_damage(damage_amount : float):
 
 func heal_damage(heal_amount):
 	take_damage(0 - heal_amount)
+
+func handle_death():
+	get_parent().queue_free()
